@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Arrow from "../../assets/ProfileImages/arrow-down-01-sharp.png";
 import logo1 from "../../assets/companyLogo/CompanyLogo.png";
 
-import horizontal from "../../assets/companyLogo/companyLogo.png"
+import horizontal from "../../assets/companyLogo/CompanyLogo.png"
 
 
 const MyApplications = () => {
