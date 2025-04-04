@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import Arrow from "../../assets/ProfileImages/arrow-down-01-sharp.png";
 import logo1 from "../../assets/companyLogo/CompanyLogo.png";
-import logo2 from "../../assets/companyLogo/CompanyLogo.png";
-import logo3 from "../../assets/companyLogo/CompanyLogo.png";
-import logo4 from "../../assets/companyLogo/CompanyLogo.png";
-import logo5 from "../../assets/companyLogo/companyLogo.png";
-import logo6 from "../../assets/companyLogo/companyLogo.png";
-import logo7 from "../../assets/companyLogo/companyLogo.png";
-import logo8 from "../../assets/companyLogo/companyLogo.png";
+
 import horizontal from "../../assets/companyLogo/companyLogo.png"
 
 
@@ -28,7 +22,7 @@ const MyApplications = () => {
     },
     {
       company: 'Square',
-      logo: logo2,
+      logo: logo1,
       type: 'Hybrid Full-time',
       location: 'Nagpur, India',
       appliedDate: '12 March, 2025',
@@ -38,7 +32,7 @@ const MyApplications = () => {
     },
     {
       company: 'Maze',
-      logo: logo3,
+      logo: logo1,
       type: 'Hybrid Full-time',
       location: 'Nagpur, India',
       appliedDate: '12 March, 2025',
@@ -48,7 +42,7 @@ const MyApplications = () => {
     },
     {
       company: 'Canva',
-      logo: logo4,
+      logo: logo1,
       type: 'Hybrid Full-time',
       location: 'Nagpur, India',
       appliedDate: '12 March, 2025',
@@ -58,7 +52,7 @@ const MyApplications = () => {
     },
     {
       company: 'Coinbase',
-      logo: logo5, 
+      logo: logo1, 
       type: 'Hybrid Full-time',
       location: 'Nagpur, India',
       appliedDate: '12 March, 2025',
@@ -68,7 +62,7 @@ const MyApplications = () => {
     },
     {
       company: 'Udacity',
-      logo: logo6,
+      logo: logo1,
       type: 'Hybrid Full-time',
       location: 'Nagpur, India',
       appliedDate: '12 March, 2025',
@@ -78,7 +72,7 @@ const MyApplications = () => {
     },
     {
       company: 'Nubank',
-      logo: logo7, 
+      logo: logo1, 
       type: 'Hybrid Full-time',
       location: 'Nagpur, India',
       appliedDate: '12 March, 2025',
@@ -88,7 +82,7 @@ const MyApplications = () => {
     },
     {
       company: 'Numbrs',
-      logo: logo8, 
+      logo: logo1, 
       type: 'Hybrid Full-time',
       location: 'Nagpur, India',
       appliedDate: '12 March, 2025',
