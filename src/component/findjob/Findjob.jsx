@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-
+// import Sidebar from "./Sidebar";
 import JobCard from "./Jobcard";
-
-import Arrow from '../../assets/ProfileImages/arrow-down-01-sharp.png'
-
+import Pagination from "./Pagination";
+// import Arrow from "./assets/ProfileImages/arrow-down-01-sharp.png";
 import { Bell } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
-function Findjob() {
-    
+function FindJob() {
     const jobsPerPage = 9;
     const totalJobs = 205;
     const jobList = new Array(totalJobs).fill(0);
@@ -19,10 +16,28 @@ function Findjob() {
     const indexOfLastJob = currentPage * jobsPerPage;
     const indexOfFirstJob = indexOfLastJob - jobsPerPage;
     const currentJobs = jobList.slice(indexOfFirstJob, indexOfLastJob);
-  return (
-    <>
-         {/* Job Listings */}
-         <div className="flex justify-between items-center flex-wrap mb-6 gap-4">
+
+    return (
+        <div className="flex min-h-screen font-sans text-[#333] bg-[#fafbfc] overflow-hidden">
+            {/* Sidebar */}
+            <main className="flex-1 p-4 w-full max-w-7xl mx-auto">
+                {/* Top Bar */}
+                <div className="flex justify-between items-center bg-white p-4 shadow-md rounded-md">
+                    <div className="hidden sm:flex relative  w-64 ml-[60%]">
+                        <input type="text" placeholder="Search here..." className="w-full pl-4 pr-4 py-2 rounded-full border border-gray-300 focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                    <div className="flex items-center space-x-4">
+                        <Bell className="text-gray-500 w-6 h-6 cursor-pointer" />
+                        <img src="https://via.placeholder.com/40" alt="User" className="w-10 h-10 rounded-full" />
+                        <div className="hidden sm:block">
+                            <p className="text-sm font-medium">Natashia Bunny</p>
+                            <p className="text-xs text-gray-500">UI/UX Designer</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Job Listings */}
+                <div className="flex justify-between items-center flex-wrap mb-6 gap-4">
                     <div>
                         <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#1e1e1e]">All Jobs</h1>
                         <p className="text-sm text-gray-500">(Showing {totalJobs} results)</p>
@@ -51,7 +66,7 @@ function Findjob() {
                                 className="w-[14%] h-[5%] px-4 py-2 border rounded-full text-[#685bc7] border-[#c8bdf9] hover:bg-[#f0ebff] flex items-center justify-between"
                             >
                                 <span>{filter}</span>
-                                <img src={Arrow} alt="" className="ml-1 w-4 h-4" />
+                                {/* <img src={Arrow} alt="" className="ml-1 w-4 h-4" /> */}
                             </button>
                         ))}
                         <button className="px-4 py-2 border rounded-full text-gray-400 border-gray-300 cursor-not-allowed w-[13%] h-[8%]">
@@ -65,8 +80,14 @@ function Findjob() {
                         <JobCard key={index} selected={index === 0} />
                     ))}
                 </div>
-    </>
-  )
+
+                {/* Pagination */}
+                <div className="mt-8  flex justify-end">
+                    <Pagination totalJobs={totalJobs} jobsPerPage={jobsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                </div>
+            </main>
+        </div>
+    );
 }
 
-export default Findjob
+export default FindJob;
