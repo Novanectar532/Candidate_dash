@@ -10,52 +10,58 @@ import ProfilePage from './pages/ProfilePage'
 import ProfileSettings from './pages/ProfileSetting'
 import EducationSkillsForm from './pages/EducationSkillForm'
 import LoginDetails from './pages/LoginDetails'
+import Setting from './component/Setting/Setting'
 
 function App() {
   const router = createBrowserRouter([
     {
-      path:'/',
-      element:<Applayout/>,
-      children:[
+      path: '/',
+      element: <Applayout />,
+      children: [
         {
-          path:'/',
-          element:<Dashboard/>
-        },{
-          path:'/job',
-          element:<Findjob/>
-        },{
-          path:'/job/detail',
-          element:<JobDetails/>
-        },{
-          path:'/myapplication',
-          element:<MyApplications/> },
+          path: '/',
+          element: <Dashboard />
+        }, {
+          path: '/job',
+          element: <Findjob />
+        }, {
+          path: '/job/detail',
+          element: <JobDetails />
+        }, {
+          path: '/myapplication',
+          element: <MyApplications />
+        },
         // },{
         //   path:'/message',
         //   element:<Mymessages/>
         // }
         {
-          path:'/profilePage',
-          element:<ProfilePage/>
+          path: '/profilePage',
+          element: <ProfilePage />
         },
         {
-          path:'/profilesetting',
-          element:<ProfileSettings/>
+          path: '/profilesetting',
+          element: <ProfileSettings />
         },
         {
-          path:'/educationskillsform',
-          element:<EducationSkillsForm/>
+          path: '/educationskillsform',
+          element: <EducationSkillsForm />
         },
         {
-          path:'/logindetails',
-          element:<LoginDetails/>
+          path: '/logindetails',
+          element: <LoginDetails />
+        },
+        {
+          path: '/setting',
+          element: <Setting />
         }
       ]
     }
   ])
 
-  return <RouterProvider router = {router}/>
-   
-  
+  return <RouterProvider router={router} />
+
+
 }
 
 export default App
