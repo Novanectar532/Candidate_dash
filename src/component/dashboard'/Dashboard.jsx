@@ -115,17 +115,17 @@ function Dashboard() {
     const [timeframe, setTimeframe] = useState("Yearly");
   return (
     <>
-       <h2 className="text-xl  pt-5 font-semibold">
+       <h2 className="text-xl  pt-5 font-semibold mx-2 ">
           Good morning, Natasha Bunny
         </h2>
-        <p className="text-gray-500">
+        <p className="text-gray-500 mx-2">
           Here is your job listings statistic report.
         </p>
 
        
-        <div className="md:flex gap-4 mt-6 gap-y-4   lg:grid lg:grid-cols-4 mx-auto justify-around  ">
-          <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
-            <FaUser className="text-2xl mr-2" />
+        <div className="md:flex gap-4 mt-6 gap-y-4   lg:grid lg:grid-cols-4 mx-auto justify-around w-full px-3 ">
+          <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4  ">
+            <FaUser className="text-2xl mr-2 " />
             <div>
               <h3 className="text-lg font-bold">76</h3>
               <p>application Sent</p>
@@ -155,7 +155,7 @@ function Dashboard() {
         </div>
 
       
-        <div className="bg-white  rounded-lg shadow-md  mx-auto px-2  py-5">
+        <div className="  rounded-lg shadow-md  mx-auto px-2  py-5">
           <div className=" md:grid md:grid-cols-3 gap-3">
            <div className="col-span-2" >
               <div className="flex justify-between pb-10 ">
@@ -236,7 +236,7 @@ function Dashboard() {
                   />
                 </BarChart>
               </ResponsiveContainer>
-              <div className="bg-white shadow-lg rounded-lg p-6 w-full  mx-auto">
+              <div className=" shadow-lg rounded-lg p-6 w-full  mx-auto">
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-semibold">Recent Applied Job</h2>
                     <a href="#" className="text-purple-600 font-medium hover:underline">Show all →</a>
@@ -282,7 +282,7 @@ function Dashboard() {
                 </div>
            </div>
 
-            <div className="  bg-white rounded-xl shadow-sm p-6 space-y-6 justify-self-center">
+            <div className="   justify-self-center">
             <PersnolProfile user={userData}/>
             </div>
           </div>

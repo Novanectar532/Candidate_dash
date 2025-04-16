@@ -3,7 +3,7 @@ import React from 'react'
 export default function PersnolProfile({ user }) {
   return (
     <div>
-       <div className="w-80 bg-white shadow-lg rounded-xl p-6">
+       <div className="shadow-lg rounded-xl p-6">
     
       <div className="text-center">
         <img src={user.image} alt="Profile" className="w-20 h-20 mx-auto rounded-full" />
