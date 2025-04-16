@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import PersnolProfile from "./PersonalProfile"
+import PersnolProfile from "./PersonalProfile";
 import {
   FaUser,
   FaCalendarAlt,
@@ -96,7 +96,14 @@ const userData = {
     { logo: "/komodo-logo.png", role: "Junior UX Designer", company: "Komodo" },
     { logo: "/nomad-logo.png", role: "Software Developer", company: "Nomad" },
   ],
-  skills: ["UI/UX", "Design System", "Figma", "UX Research", "Prototype", "Wireframe"],
+  skills: [
+    "UI/UX",
+    "Design System",
+    "Figma",
+    "UX Research",
+    "Prototype",
+    "Wireframe",
+  ],
 };
 
 const applicantSummary = {
@@ -112,15 +119,12 @@ const applicantSummary = {
 
 function Dashboard() {
   const [chartData, setChartData] = useState(yearlyData);
-    const [timeframe, setTimeframe] = useState("Yearly");
+  const [timeframe, setTimeframe] = useState("Yearly");
   return (
     <>
-      <div className="w-full">
-      
-      </div>
+    
 
-      
-        <div className="  rounded-lg shadow-md  mx-auto px-2  py-5">
+      <div className="  rounded-lg shadow-md  mx-auto px-2  py-5 w-full">
         <h2 className="text-xl  pt-5 font-semibold mx-2 ">
           Good morning, Natasha Bunny
         </h2>
@@ -128,7 +132,6 @@ function Dashboard() {
           Here is your job listings statistic report.
         </p>
 
-       
         <div className="md:flex gap-4 mt-6 gap-y-4   lg:grid lg:grid-cols-4 mx-auto justify-around w-full px-3 pb-5 ">
           <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4  ">
             <FaUser className="text-2xl mr-2 " />
@@ -160,149 +163,148 @@ function Dashboard() {
           </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-          <div className=" md:grid md:grid-cols-3 gap-3">
-           <div className="col-span-2" >
-              <div className="flex justify-between pb-10 ">
-                <h3 className="text-lg font-semibold">Profile View</h3>
-                <div className="flex rounded-2xl">
-                  <button
-                    onClick={() => {
-                      setChartData(weeklyData);
-                      setTimeframe("Weekly");
-                    }}
-                    className={`px-4 py-2 rounded ${
-                      timeframe === "Weekly"
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-200"
-                    }`}
-                  >
-                    Weekly
-                  </button>
-                  <button
-                    onClick={() => {
-                      setChartData(monthlyData);
-                      setTimeframe("Monthly");
-                    }}
-                    className={`px-4 py-2 rounded ${
-                      timeframe === "Monthly"
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-200"
-                    }`}
-                  >
-                    Monthly
-                  </button>
-                  <button
-                    onClick={() => {
-                      setChartData(yearlyData);
-                      setTimeframe("Yearly");
-                    }}
-                    className={`px-4 py-2 rounded ${
-                      timeframe === "Yearly"
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-200"
-                    }`}
-                  >
-                    Yearly
-                  </button>
-                </div>
+        <div className=" md:grid md:grid-cols-3 gap-3">
+          <div className="col-span-2">
+            <div className="flex justify-between pb-10 ">
+              <h3 className="text-lg font-semibold">Profile View</h3>
+              <div className="flex rounded-2xl">
+                <button
+                  onClick={() => {
+                    setChartData(weeklyData);
+                    setTimeframe("Weekly");
+                  }}
+                  className={`px-4 py-2 rounded ${
+                    timeframe === "Weekly"
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200"
+                  }`}
+                >
+                  Weekly
+                </button>
+                <button
+                  onClick={() => {
+                    setChartData(monthlyData);
+                    setTimeframe("Monthly");
+                  }}
+                  className={`px-4 py-2 rounded ${
+                    timeframe === "Monthly"
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200"
+                  }`}
+                >
+                  Monthly
+                </button>
+                <button
+                  onClick={() => {
+                    setChartData(yearlyData);
+                    setTimeframe("Yearly");
+                  }}
+                  className={`px-4 py-2 rounded ${
+                    timeframe === "Yearly"
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200"
+                  }`}
+                >
+                  Yearly
+                </button>
               </div>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={chartData}>
-                  <XAxis
-                    dataKey={
-                      timeframe === "Yearly"
-                        ? "year"
-                        : timeframe === "Monthly"
-                        ? "month"
-                        : "week"
-                    }
-                  />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar
-                    dataKey="jobView"
-                    stackId="a"
-                    fill="#4F46E5"
-                    name="Job View"
-                  />
-                  <Bar
-                    dataKey="jobApplied"
-                    stackId="a"
-                    fill="#F59E0B"
-                    name="Job Applied"
-                  />
-                  <Bar
-                    dataKey="jobInterview"
-                    stackId="a"
-                    fill="#10B981"
-                    name="Job Interview"
-                  />
-                </BarChart>
-              </ResponsiveContainer>
-              <div className=" shadow-lg rounded-lg p-6 w-full  mx-auto">
-                  <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-semibold">Recent Applied Job</h2>
-                    <a href="#" className="text-purple-600 font-medium hover:underline">Show all →</a>
-                  </div>
-                  <div className="overflow-x-auto">
-                    <table className="w-full border-collapse">
-                      <thead>
-                        <tr className="bg-gray-100 text-gray-600 text-left text-sm">
-                          <th className="p-3">Company Name</th>
-                          <th className="p-3">Date & Time</th>
-                          <th className="p-3">Status</th>
-                          <th className="p-3">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {jobs.map((job) => (
-                          <tr key={job.id} className="border-b">
-                            <td className="p-3 flex items-center gap-3">
-                              <div className="bg-blue-500 text-white p-4 rounded-md">S</div>
-                              <div>
-                                <p className="font-medium text-gray-900">{job.company}</p>
-                                <p className="text-sm text-gray-500">{job.type}</p>
-                              </div>
-                            </td>
-                            <td className="p-3 text-gray-700">{job.date}</td>
-                            <td className="p-3">
-                              <span
-                                className={`px-3 py-1 rounded-full text-sm font-medium ${job.statusColor}`}
-                              >
-                                {job.status}
-                              </span>
-                            </td>
-                            <td className="p-3">
-                              <button className="text-gray-500 hover:text-gray-700">
-                                <ChevronDown size={16} />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-           </div>
-
-            <div className="   justify-self-center">
-            <PersnolProfile user={userData}/>
+            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={chartData}>
+                <XAxis
+                  dataKey={
+                    timeframe === "Yearly"
+                      ? "year"
+                      : timeframe === "Monthly"
+                      ? "month"
+                      : "week"
+                  }
+                />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar
+                  dataKey="jobView"
+                  stackId="a"
+                  fill="#4F46E5"
+                  name="Job View"
+                />
+                <Bar
+                  dataKey="jobApplied"
+                  stackId="a"
+                  fill="#F59E0B"
+                  name="Job Applied"
+                />
+                <Bar
+                  dataKey="jobInterview"
+                  stackId="a"
+                  fill="#10B981"
+                  name="Job Interview"
+                />
+              </BarChart>
+            </ResponsiveContainer>
+            <div className=" shadow-lg rounded-lg p-6 w-full  mx-auto">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold">Recent Applied Job</h2>
+                <a
+                  href="#"
+                  className="text-purple-600 font-medium hover:underline"
+                >
+                  Show all →
+                </a>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-gray-100 text-gray-600 text-left text-sm">
+                      <th className="p-3">Company Name</th>
+                      <th className="p-3">Date & Time</th>
+                      <th className="p-3">Status</th>
+                      <th className="p-3">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {jobs.map((job) => (
+                      <tr key={job.id} className="border-b">
+                        <td className="p-3 flex items-center gap-3">
+                          <div className="bg-blue-500 text-white p-4 rounded-md">
+                            S
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900">
+                              {job.company}
+                            </p>
+                            <p className="text-sm text-gray-500">{job.type}</p>
+                          </div>
+                        </td>
+                        <td className="p-3 text-gray-700">{job.date}</td>
+                        <td className="p-3">
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-medium ${job.statusColor}`}
+                          >
+                            {job.status}
+                          </span>
+                        </td>
+                        <td className="p-3">
+                          <button className="text-gray-500 hover:text-gray-700">
+                            <ChevronDown size={16} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
+
+          <div className="   justify-self-center">
+            <PersnolProfile user={userData} />
+          </div>
         </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

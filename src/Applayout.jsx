@@ -16,8 +16,8 @@ import {
 function Applayout() {
   return (
     <div className='max-w-full flex flex-flex'>
-        <div className='lg:w-3/12 '><Sidebar/></div>
-        <div className='flex lg:w-9/12  flex-col w-full'>
+        <div className='lg:w-3/12 lg:block hidden'><Sidebar/></div>
+        <div className='flex lg:w-9/12 w-full  flex-col '>
           {<Header/>}
           {<Outlet/>}
           </div>
