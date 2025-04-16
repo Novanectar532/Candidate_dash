@@ -115,7 +115,13 @@ function Dashboard() {
     const [timeframe, setTimeframe] = useState("Yearly");
   return (
     <>
-       <h2 className="text-xl  pt-5 font-semibold mx-2 ">
+      <div className="w-full">
+      
+      </div>
+
+      
+        <div className="  rounded-lg shadow-md  mx-auto px-2  py-5">
+        <h2 className="text-xl  pt-5 font-semibold mx-2 ">
           Good morning, Natasha Bunny
         </h2>
         <p className="text-gray-500 mx-2">
@@ -123,7 +129,7 @@ function Dashboard() {
         </p>
 
        
-        <div className="md:flex gap-4 mt-6 gap-y-4   lg:grid lg:grid-cols-4 mx-auto justify-around w-full px-3 ">
+        <div className="md:flex gap-4 mt-6 gap-y-4   lg:grid lg:grid-cols-4 mx-auto justify-around w-full px-3 pb-5 ">
           <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4  ">
             <FaUser className="text-2xl mr-2 " />
             <div>
@@ -154,8 +160,16 @@ function Dashboard() {
           </div>
         </div>
 
-      
-        <div className="  rounded-lg shadow-md  mx-auto px-2  py-5">
+
+
+
+
+
+
+
+
+
+
           <div className=" md:grid md:grid-cols-3 gap-3">
            <div className="col-span-2" >
               <div className="flex justify-between pb-10 ">
