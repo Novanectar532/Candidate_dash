@@ -10,7 +10,9 @@ import ProfilePage from './pages/ProfilePage'
 import ProfileSettings from './pages/ProfileSetting'
 import EducationSkillsForm from './pages/EducationSkillForm'
 import LoginDetails from './pages/LoginDetails'
-
+import ProtectedRoute from './component/ProtectedRoute'
+import { AuthProvider } from './component/AuthContext' 
+import Login from './component/Login'
 function App() {
   const router = createBrowserRouter([
     {
@@ -19,43 +21,54 @@ function App() {
       children:[
         {
           path:'/',
-          element:<Dashboard/>
-        },{
+          element:(
+          <ProtectedRoute><Dashboard/></ProtectedRoute>
+          )
+        },
+        {
+          path: '/login',
+          element: <Login />
+        },
+        {
           path:'/job',
-          element:<Findjob/>
+          element:(
+          <ProtectedRoute><Findjob/></ProtectedRoute>
+          )
         },{
           path:'/job/detail',
-          element:<JobDetails/>
+          element:(<ProtectedRoute><JobDetails/></ProtectedRoute>)
         },{
           path:'/myapplication',
-          element:<MyApplications/> },
+          element:(<ProtectedRoute><MyApplications/> </ProtectedRoute>)},
         // },{
         //   path:'/message',
         //   element:<Mymessages/>
         // }
         {
           path:'/profilePage',
-          element:<ProfilePage/>
+          element:(<ProtectedRoute><ProfilePage/></ProtectedRoute>)
         },
         {
           path:'/profilesetting',
-          element:<ProfileSettings/>
+          element:(<ProtectedRoute><ProfileSettings/></ProtectedRoute>)
         },
         {
           path:'/educationskillsform',
-          element:<EducationSkillsForm/>
+          element:(<ProtectedRoute><EducationSkillsForm/></ProtectedRoute>)
         },
         {
           path:'/logindetails',
-          element:<LoginDetails/>
+          element:(<ProtectedRoute><LoginDetails/></ProtectedRoute>)
         }
       ]
     }
   ])
 
-  return <RouterProvider router = {router}/>
-   
-  
+  return (
+  <AuthProvider>
+  <RouterProvider router = {router}/>
+  </AuthProvider>
+  )
 }
 
 export default App
