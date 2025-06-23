@@ -13,6 +13,7 @@ import LoginDetails from './pages/LoginDetails'
 import ProtectedRoute from './component/ProtectedRoute'
 import { AuthProvider } from './component/AuthContext' 
 import Login from './component/Login'
+import CandidateSetting from './component/candidateSetting/CandidateSetting'
 function App() {
   const router = createBrowserRouter([
     {
@@ -35,7 +36,7 @@ function App() {
           <ProtectedRoute><Findjob/></ProtectedRoute>
           )
         },{
-          path:'/job/detail',
+          path:'/job/detail/:jobId',
           element:(<ProtectedRoute><JobDetails/></ProtectedRoute>)
         },{
           path:'/myapplication',
@@ -59,6 +60,9 @@ function App() {
         {
           path:'/logindetails',
           element:(<ProtectedRoute><LoginDetails/></ProtectedRoute>)
+        },{
+          path:'/setting',
+          element:(<ProtectedRoute><CandidateSetting/></ProtectedRoute>)
         }
       ]
     }

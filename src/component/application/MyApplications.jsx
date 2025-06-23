@@ -1,97 +1,33 @@
-import React, { useState } from 'react';
+import React, { use, useState, useEffect } from 'react';
 import Arrow from "../../assets/ProfileImages/arrow-down-01-sharp.png";
 import logo1 from "../../assets/companyLogo/CompanyLogo.png";
 
 import horizontal from "../../assets/companyLogo/CompanyLogo.png"
+import axios from 'axios';
 
 
 const MyApplications = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [applications, setApplications] = useState()
 
   //sample data
-  const applications = [
-    {
-      company: 'Stripe',
-      logo: logo1, 
-      type: 'Hybrid | Full-time',
-      location: 'Nagpur, India',
-      appliedDate: '12 March, 2025',
-      jobRole: 'UI/UX Designer',
-      status: 'Applied',
-      statusColor: 'border-blue-600 border text-blue-600',
-    },
-    {
-      company: 'Square',
-      logo: logo1,
-      type: 'Hybrid Full-time',
-      location: 'Nagpur, India',
-      appliedDate: '12 March, 2025',
-      jobRole: 'UI/UX Designer',
-      status: 'Interview',
-      statusColor: 'border border-orange-600 text-orange-600',
-    },
-    {
-      company: 'Maze',
-      logo: logo1,
-      type: 'Hybrid Full-time',
-      location: 'Nagpur, India',
-      appliedDate: '12 March, 2025',
-      jobRole: 'UI/UX Designer',
-      status: 'Interview',
-      statusColor: 'border border-orange-600 text-orange-600',
-    },
-    {
-      company: 'Canva',
-      logo: logo1,
-      type: 'Hybrid Full-time',
-      location: 'Nagpur, India',
-      appliedDate: '12 March, 2025',
-      jobRole: 'UI/UX Designer',
-      status: 'Declined',
-      statusColor: 'border-red-600 border  text-red-600',
-    },
-    {
-      company: 'Coinbase',
-      logo: logo1, 
-      type: 'Hybrid Full-time',
-      location: 'Nagpur, India',
-      appliedDate: '12 March, 2025',
-      jobRole: 'UI/UX Designer',
-      status: 'Interview',
-      statusColor: 'border border-orange-600 text-orange-600',
-    },
-    {
-      company: 'Udacity',
-      logo: logo1,
-      type: 'Hybrid Full-time',
-      location: 'Nagpur, India',
-      appliedDate: '12 March, 2025',
-      jobRole: 'UI/UX Designer',
-      status: 'Interview',
-      statusColor: 'border border-orange-600 text-orange-600',
-    },
-    {
-      company: 'Nubank',
-      logo: logo1, 
-      type: 'Hybrid Full-time',
-      location: 'Nagpur, India',
-      appliedDate: '12 March, 2025',
-      jobRole: 'UI/UX Designer',
-      status: 'Interview',
-      statusColor: 'border border-orange-600 text-orange-600',
-    },
-    {
-      company: 'Numbrs',
-      logo: logo1, 
-      type: 'Hybrid Full-time',
-      location: 'Nagpur, India',
-      appliedDate: '12 March, 2025',
-      jobRole: 'UI/UX Designer',
-      status: 'Interview',
-      statusColor: 'border border-orange-600 text-orange-600',
-    },
-   
-  ];
+
+  useEffect(() => {
+  const fetchAppliedJobs = async () => {
+    try {
+      const data = JSON.parse(localStorage.getItem("user"));
+      const user_id = data.id;
+      console.log("User id:", user_id);
+      const response = await axios.get(`http://localhost:5000/job/user/${user_id}/applied-jobs`);
+      setApplications(response.data.user.applied);
+      console.log("Applied jobs:", response.data.user.applied);
+    } catch (err) {
+      console.error("Error fetching applied jobs:", err);
+    }
+  };
+
+  fetchAppliedJobs();
+}, []);
 
   const tableMarginTop = isFilterOpen ? "mt-24" : "mt-3";
 
@@ -101,7 +37,7 @@ const MyApplications = () => {
      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 relative">
        <div>
          <h1 className="text-xl sm:text-2xl pl-4 sm:pl-0 font-semibold">My Application</h1>
-         <span className="text-[#A0A0A0] p-1">({applications.length})</span>
+         {/* <span className="text-[#A0A0A0] p-1">({applications.length})</span> */}
        </div>
        <button
          className="flex gap-3 text-sm px-3 sm:px-4 py-2 w-full sm:w-[96px] h-[38px] border border-[#C6C4F5] rounded-md text-[#4640DE] hover:bg-blue-100 mt-4 sm:mt-0"
@@ -143,18 +79,23 @@ const MyApplications = () => {
              </tr>
            </thead>
            <tbody>
-             {applications.map((app, index) => (
+            {Array.isArray(applications) &&
+              applications.map((app, index) => (
                <tr key={index}>
-                 <td className="py-3 flex items-center gap-2 pl-3">
-                   <img className="flex items-center justify-center object-contain w-10 h-10" src={app.logo} alt="" />
+                 <td className="py-3 flex items-center gap-1 ">
+                   <img className="flex items-center justify-center object-contain w-8 h-10" src={app.companyLogo} alt="" />
                    <div>
-                     <div className="font-semibold">{app.company}</div>
+                     <div className="font-semibold">{app.companyName}</div>
                      <div className="text-sm text-gray-500">{app.type}</div>
                    </div>
                  </td>
                  <td className="py-3">{app.location}</td>
-                 <td className="py-3">{app.appliedDate}</td>
-                 <td className="py-3">{app.jobRole}</td>
+                 <td className="py-3">{new Date(app.createdAt).toLocaleDateString("en-IN", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric"
+})}</td>
+                 <td className="py-3">{app.jobTitle}</td>
                  <td className="py-3">
                    <button className={`text-sm w-[95px] h-[34px] rounded-full ${app.statusColor}`}>
                      {app.status}

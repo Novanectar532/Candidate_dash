@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import Sidebar from "./Sidebar";
 import JobCard from "./Jobcard";
 import Pagination from "./Pagination";
 // import Arrow from "./assets/ProfileImages/arrow-down-01-sharp.png";
 import { Bell } from "lucide-react";
+import axios from "axios";
 
 function FindJob() {
     const jobsPerPage = 9;
@@ -16,6 +17,20 @@ function FindJob() {
     const indexOfLastJob = currentPage * jobsPerPage;
     const indexOfFirstJob = indexOfLastJob - jobsPerPage;
     const currentJobs = jobList.slice(indexOfFirstJob, indexOfLastJob);
+    const [jobs, setJobs] = useState([]);
+
+    useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/job/jobpost');
+        setJobs(response.data); // Adjust based on your API response shape
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      }
+    };
+
+    fetchJobs();
+  }, []);
 
     return (
         <div className="flex min-h-screen font-sans text-[#333] bg-[#fafbfc] overflow-hidden">
@@ -75,9 +90,9 @@ function FindJob() {
                     </div>
                 )}
                 {/* Job Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-                    {currentJobs.map((_, index) => (
-                        <JobCard key={index} selected={index === 0} />
+                <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-6 mt-6">
+                    {jobs.map((items , index) => (
+                        <JobCard key={items.id} selected={index === 0} jobs={items} />
                     ))}
                 </div>
 
