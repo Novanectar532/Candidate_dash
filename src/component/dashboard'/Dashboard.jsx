@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import axios from "axios";
 import PersnolProfile from "./PersonalProfile"
 import {
   FaUser,
@@ -113,6 +114,31 @@ const applicantSummary = {
 function Dashboard() {
   const [chartData, setChartData] = useState(yearlyData);
     const [timeframe, setTimeframe] = useState("Yearly");
+    const [applied, setApplied] = useState([]);
+  const[job, setjob] = useState([]);
+
+
+  useEffect(() => {
+  const fetchJobs = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`);
+      console.log(response.data); // ✅ Use response.data, not response.response
+      setjob(response.data);
+
+      const data = JSON.parse(localStorage.getItem("user"));
+      const user_id = data.id;
+      console.log("User id:", user_id);
+      const apply = await axios.get(`http://localhost:5000/job/user/${user_id}/applied-jobs`);
+      setApplied(apply.data.user.applied.length);
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+    }
+  };
+
+  fetchJobs();
+}, []);
+
+
   return (
     <>
        <h2 className="text-xl  pt-5 font-semibold">
@@ -127,7 +153,7 @@ function Dashboard() {
           <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaUser className="text-2xl mr-2" />
             <div>
-              <h3 className="text-lg font-bold">76</h3>
+              <h3 className="text-lg font-bold">{applied}</h3>
               <p>application Sent</p>
             </div>
           </div>
@@ -141,8 +167,8 @@ function Dashboard() {
           <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaEnvelope className="text-2xl mr-2" />
             <div>
-              <h3 className="text-lg font-bold">23</h3>
-              <p>Recent job offer</p>
+              <h3 className="text-lg font-bold">{job.length}</h3>
+              <p>Total job offer</p>
             </div>
           </div>
           <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">

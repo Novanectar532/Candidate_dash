@@ -69,7 +69,7 @@ function JobDetails() {
      const { jobId } = useParams();
      console.log('jobId', jobId)
     const [job, setjob] = useState();
-    // console.log('jobtitle', )
+    console.log('job.jobtitle',job )
    
     const [allJobs, setAllJobs] = useState();
     const [resume, setResume] = useState(null);
@@ -87,7 +87,9 @@ function JobDetails() {
         const res = await axios.get(`http://localhost:5000/job/jobpost/`);
         setAllJobs(res.data);
         const data = response.data;
+        console.log("Job data fetched:", data);
         setjob(data);
+        console.log("Job fetched successfully:", data.jobTitle);
         console.log("Job data:", data);
       } catch (error) {
         console.error("Error fetching job details:", error);
@@ -99,7 +101,7 @@ function JobDetails() {
     }
   }, [jobId]);
 
-    console.log('hry',job)
+    console.log('hry',job?.jobTitle)
     console.log('allJobs', allJobs)
    
 //     {job && (
@@ -115,12 +117,21 @@ function JobDetails() {
         fullName: "",
         email: user.email,
         phone: "",
-        jobTitle: "",
+        jobTitle: job?.jobTitle ,
         linkedInUrl: "",
         portfolioUrl: "",
         additionalInfo: "",
         charCount: 0
     });
+
+    useEffect(() => {
+  if (job?.jobTitle) {
+    setFormData((prev) => ({
+      ...prev,
+      jobTitle: job.jobTitle
+    }));
+  }
+}, [job]);
 
     
 
@@ -268,10 +279,10 @@ if (videoIntroduction) {
                             <ul className="space-y-4">
                                 {[
                                     { icon: <CalendarDays className="text-purple-500" size={20} />, label: "Date Posted", value: new Date(job.createdAt).toLocaleDateString("en-IN", {
-  day: "2-digit",
-  month: "long",
-  year: "numeric"
-}) },
+                                day: "2-digit",
+                                month: "long",
+                                year: "numeric"
+                                }) },
                                     { icon: <Hourglass className="text-purple-500" size={20} />, label: "Expiration Date", value: "April 06, 2021" },
                                     { icon: <MapPin className="text-purple-500" size={20} />, label: "Location", value: job.location },
                                     { icon: <User className="text-purple-500" size={20} />, label: "Job Title", value: job.jobTitle },
@@ -409,16 +420,18 @@ if (videoIntroduction) {
                                             <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-700 mb-1">
                                                 Job Title*
                                             </label>
-                                            <input
+                                           {job && (
+                                             <input
                                                 type="text"
                                                 id="jobTitle"
                                                 name="jobTitle"
-                                                value={job.jobTitle}
+                                                value={formData.jobTitle}
                                                 onChange={handleChange}
                                                 required
                                                 className="w-full p-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                                 placeholder="Enter your job title"
                                             />
+                                           )}
                                         </div>
                                     </div>
 

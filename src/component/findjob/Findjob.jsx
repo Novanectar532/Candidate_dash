@@ -55,7 +55,7 @@ function FindJob() {
                 <div className="flex justify-between items-center flex-wrap mb-6 gap-4">
                     <div>
                         <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#1e1e1e]">All Jobs</h1>
-                        <p className="text-sm text-gray-500">(Showing {totalJobs} results)</p>
+                        <p className="text-sm text-gray-500">Showing {jobs.length} results</p>
                     </div>
                     <div className="flex gap-2 sm:gap-3">
                         <button

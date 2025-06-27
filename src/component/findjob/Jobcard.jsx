@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 function JobCard({jobs, selected }) {
     const navigate = useNavigate()
     console.log('hey',jobs._id)
+    const data = JSON.parse(localStorage.getItem("user"));
+    const user_id = data.id;
+    console.log("User id:", user_id);
+    const hasApplied = jobs.studentApplied.includes(user_id);
     return (
         <motion.div
             className={`border rounded-lg p-4 max-w-full w-full ${selected ? "border-[#4f46e5]" : "border-gray-200"} shadow-sm `}
@@ -44,9 +48,20 @@ function JobCard({jobs, selected }) {
 
 
             <div className="flex flex-row xs:justify-between gap-2">
-                <button onClick={()=>navigate(`/job/detail/${jobs._id}`)} className="bg-[#4f46e5]  md:w-[160px] sm:w-auto text-white text-xs px-4 py-2 rounded-md hover:bg-[#4338ca] ">
-                    Apply Now
-                </button>
+              <button
+  onClick={() => {
+    if (!hasApplied) {
+      navigate(`/job/detail/${jobs._id}`);
+    }
+  }}
+  disabled={hasApplied}
+  className={`${
+    hasApplied ? 'bg-gray-600 cursor-not-allowed' : '   bg-violet-500 hover:bg-[#4338ca]'
+  } md:w-[160px] sm:w-auto text-white text-xs px-4 py-2 rounded-md`}
+>
+  {hasApplied ? 'Applied' : 'Apply Now'}
+</button>
+
                 <button onClick={()=>navigate(`/job/detail/${jobs._id}`)} className="border text-[#4f46e5] md:w-[160px] sm:w-auto border-[#4f46e5] text-xs px-4 py-2 rounded-md hover:bg-[#f1f5ff]">
                     View Details
                 </button>
