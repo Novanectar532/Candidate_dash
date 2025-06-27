@@ -58,14 +58,14 @@ const SocialLinks = () => {
 
   return (
     <div className="flex flex-col md:flex-row w-full justify-between gap-6">
-      <div className="w-full md:w-1/3">
+      <div className="w-full flex-1">
         <h3 className="text-lg font-medium">Basic Information</h3>
         <p className="text-sm text-gray-500">
           Add elsewhere links to your company profile. You can add only usernames without full https links.
         </p>
       </div>
 
-      <form className="w-full md:w-2/3 space-y-4" onSubmit={handleOnSubmit}>
+      <form className="w-full flex-1 space-y-4" onSubmit={handleOnSubmit}>
         <div>
           <label className="block text-sm font-medium text-gray-700">Instagram Link</label>
           <input

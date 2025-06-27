@@ -122,7 +122,7 @@ function Dashboard() {
   const [timeframe, setTimeframe] = useState("Yearly");
   return (
     <>
-    
+
 
       <div className="  rounded-lg shadow-md  mx-auto px-2  py-5 w-full">
         <h2 className="text-xl  pt-5 font-semibold mx-2 ">
@@ -132,29 +132,29 @@ function Dashboard() {
           Here is your job listings statistic report.
         </p>
 
-        <div className="md:flex gap-4 mt-6 gap-y-4   lg:grid lg:grid-cols-4 mx-auto justify-around w-full px-3 pb-5 ">
-          <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4  ">
+        <div className="flex flex-col sm:flex-row gap-4 mt-6 gap-y-4 mx-auto justify-around w-full px-3 pb-5 flex-wrap ">
+          <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 flex-1 ">
             <FaUser className="text-2xl mr-2 " />
             <div>
               <h3 className="text-lg font-bold">76</h3>
               <p>application Sent</p>
             </div>
           </div>
-          <div className="bg-green-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
+          <div className="bg-green-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 flex-1">
             <FaCalendarAlt className="text-2xl mr-2" />
             <div>
               <h3 className="text-lg font-bold">110</h3>
               <p>Interview schedule</p>
             </div>
           </div>
-          <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
+          <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 flex-1">
             <FaEnvelope className="text-2xl mr-2" />
             <div>
               <h3 className="text-lg font-bold">23</h3>
               <p>Recent job offer</p>
             </div>
           </div>
-          <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
+          <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 flex-1">
             <FaEnvelope className="text-2xl mr-2" />
             <div>
               <h3 className="text-lg font-bold">23</h3>
@@ -165,7 +165,7 @@ function Dashboard() {
 
         <div className=" md:grid md:grid-cols-3 gap-3">
           <div className="col-span-2">
-            <div className="flex justify-between pb-10 ">
+            <div className="flex justify-between pb-10 flex-wrap">
               <h3 className="text-lg font-semibold">Profile View</h3>
               <div className="flex rounded-2xl">
                 <button
@@ -173,11 +173,10 @@ function Dashboard() {
                     setChartData(weeklyData);
                     setTimeframe("Weekly");
                   }}
-                  className={`px-4 py-2 rounded ${
-                    timeframe === "Weekly"
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
-                  }`}
+                  className={`px-4 py-2 rounded ${timeframe === "Weekly"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                    }`}
                 >
                   Weekly
                 </button>
@@ -186,11 +185,10 @@ function Dashboard() {
                     setChartData(monthlyData);
                     setTimeframe("Monthly");
                   }}
-                  className={`px-4 py-2 rounded ${
-                    timeframe === "Monthly"
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
-                  }`}
+                  className={`px-4 py-2 rounded ${timeframe === "Monthly"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                    }`}
                 >
                   Monthly
                 </button>
@@ -199,11 +197,10 @@ function Dashboard() {
                     setChartData(yearlyData);
                     setTimeframe("Yearly");
                   }}
-                  className={`px-4 py-2 rounded ${
-                    timeframe === "Yearly"
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
-                  }`}
+                  className={`px-4 py-2 rounded ${timeframe === "Yearly"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                    }`}
                 >
                   Yearly
                 </button>
@@ -216,8 +213,8 @@ function Dashboard() {
                     timeframe === "Yearly"
                       ? "year"
                       : timeframe === "Monthly"
-                      ? "month"
-                      : "week"
+                        ? "month"
+                        : "week"
                   }
                 />
                 <YAxis />
@@ -243,13 +240,10 @@ function Dashboard() {
                 />
               </BarChart>
             </ResponsiveContainer>
-            <div className=" shadow-lg rounded-lg p-6 w-full  mx-auto">
-              <div className="flex justify-between items-center mb-4">
+            <div className="shadow-lg rounded-lg p-6 w-full mx-auto">
+              <div className="flex justify-between items-center mb-4 flex-wrap gap-3">
                 <h2 className="text-xl font-semibold">Recent Applied Job</h2>
-                <a
-                  href="#"
-                  className="text-purple-600 font-medium hover:underline"
-                >
+                <a href="#" className="text-purple-600 font-medium hover:underline">
                   Show all →
                 </a>
               </div>
@@ -259,43 +253,59 @@ function Dashboard() {
                     <tr className="bg-gray-100 text-gray-600 text-left text-sm">
                       <th className="p-3">Company Name</th>
                       <th className="p-3">Date & Time</th>
-                      <th className="p-3">Status</th>
-                      <th className="p-3">Action</th>
+                      <th className="p-3 hidden sm:table-cell">Status</th>
+                      <th className="p-3 hidden sm:table-cell">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {jobs.map((job) => (
-                      <tr key={job.id} className="border-b">
-                        <td className="p-3 flex items-center gap-3">
-                          <div className="bg-blue-500 text-white p-4 rounded-md">
-                            S
-                          </div>
-                          <div>
-                            <p className="font-medium text-gray-900">
-                              {job.company}
-                            </p>
-                            <p className="text-sm text-gray-500">{job.type}</p>
-                          </div>
-                        </td>
-                        <td className="p-3 text-gray-700">{job.date}</td>
-                        <td className="p-3">
-                          <span
-                            className={`px-3 py-1 rounded-full text-sm font-medium ${job.statusColor}`}
-                          >
-                            {job.status}
-                          </span>
-                        </td>
-                        <td className="p-3">
-                          <button className="text-gray-500 hover:text-gray-700">
-                            <ChevronDown size={16} />
-                          </button>
-                        </td>
-                      </tr>
+                      <React.Fragment key={job.id}>
+                        <tr className="">
+                          {/* Company logo, name, and type */}
+                          <td className="p-3">
+                            <div className="flex items-center gap-3">
+                              <div className="bg-blue-500 text-white p-4 rounded-md">S</div>
+                              <div>
+                                <p className="font-medium text-gray-900">{job.company}</p>
+                                <p className="text-sm text-gray-500">{job.type}</p>
+                              </div>
+                            </div>
+                          </td>
+
+                          {/* Date */}
+                          <td className="p-3 text-gray-700 whitespace-nowrap">{job.date}</td>
+
+                          {/* Status on desktop */}
+                          <td className="p-3 hidden sm:table-cell">
+                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${job.statusColor}`}>
+                              {job.status}
+                            </span>
+                          </td>
+
+                          {/* Action on desktop */}
+                          <td className="p-3 hidden sm:table-cell">
+                            <button className="text-gray-500 hover:text-gray-700">
+                              <ChevronDown size={16} />
+                            </button>
+                          </td>
+                        </tr>
+
+                        {/* Job status row (only for mobile) */}
+                        <tr className="sm:hidden border-b">
+                          <td colSpan={2} className="px-3 pb-3 pt-0">
+                            <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${job.statusColor}`}>
+                              {job.status}
+                            </span>
+                          </td>
+                        </tr>
+                      </React.Fragment>
                     ))}
                   </tbody>
                 </table>
               </div>
             </div>
+
+
           </div>
 
           <div className="   justify-self-center">

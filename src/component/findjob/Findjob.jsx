@@ -22,7 +22,7 @@ function FindJob() {
             {/* Sidebar */}
             <main className="flex-1 p-4 w-full max-w-7xl mx-auto">
                 {/* Top Bar */}
-                <div className="flex justify-between items-center bg-white p-4 shadow-md rounded-md">
+                {/* <div className="flex justify-between items-center bg-white p-4 shadow-md rounded-md">
                     <div className="hidden sm:flex relative  w-64 ml-[60%]">
                         <input type="text" placeholder="Search here..." className="w-full pl-4 pr-4 py-2 rounded-full border border-gray-300 focus:ring-2 focus:ring-blue-400" />
                     </div>
@@ -34,7 +34,7 @@ function FindJob() {
                             <p className="text-xs text-gray-500">UI/UX Designer</p>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Job Listings */}
                 <div className="flex justify-between items-center flex-wrap mb-6 gap-4">
